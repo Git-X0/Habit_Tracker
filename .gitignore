@@ -10,6 +10,7 @@
 # Node modules and dependency files
 /node_modules/
 /package-lock.json
+/package.json
 /yarn.lock
 
 # Environment files
@@ -26,3 +27,5 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+Habit-Tracker/package.json
+Habit-Tracker/package-lock.json
