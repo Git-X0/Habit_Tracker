@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HabitComponent } from './habit/habit';
-import { Habit } from './habit.model';
+import { Habit } from './habit/habit.model';
 
 @Component({
   selector: 'app-root',

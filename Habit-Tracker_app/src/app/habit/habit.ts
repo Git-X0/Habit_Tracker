@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { Habit } from '../habit.model';
+import { Habit } from './habit.model';
 
 @Component({
   selector: 'app-habit',
