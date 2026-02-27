@@ -1,8 +1,9 @@
 export interface Habit {
   id: number;
   name: string;
-  type: 'positive' | 'negative';
+  type: string;
+  description: string;
   color: string;
-  history: Date[];
+  history: Array<string>;
   streak: number;
 }
