@@ -1,9 +1,9 @@
 .positive-habit {
-  background-color: #bbdefb; /* Light Blue */
+  background-color: #53b2ff; /* Light Blue */
 }
 
 .negative-habit {
-  background-color: #ffcdd2; /* Light Red */
+  background-color: #ff5f6f; /* Light Red */
 }
 
 .toggle-container {
@@ -24,7 +24,7 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
 
-  h1 {
+  h3 {
     text-align: center;
   }
 
@@ -37,4 +37,11 @@
 
 mat-card {
   margin: 10px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.centered-toggle {
+  display: flex;
+  justify-content: center;
 }

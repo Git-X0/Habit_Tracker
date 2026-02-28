@@ -3,7 +3,7 @@
 >
 
 <div class="form-container">
-  <h1>Add a new Habit</h1>
+  <h3>Add a new Habit</h3>
   <form [formGroup]="habitForm" (ngSubmit)="onSubmit()">
     <mat-form-field>
       <mat-label>Habit Name</mat-label>
@@ -15,10 +15,12 @@
       <textarea matInput formControlName="description"></textarea>
     </mat-form-field>
 
-    <mat-radio-group formControlName="type">
-      <mat-radio-button value="positive">Positive</mat-radio-button>
-      <mat-radio-button value="negative">Negative</mat-radio-button>
-    </mat-radio-group>
+    <div class="centered-toggle">
+      <mat-button-toggle-group formControlName="type">
+        <mat-button-toggle value="positive">Positive</mat-button-toggle>
+        <mat-button-toggle value="negative">Negative</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
 
     <button mat-raised-button color="primary" type="submit">Add Habit</button>
   </form>
