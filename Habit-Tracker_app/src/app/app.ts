@@ -3,43 +3,97 @@ import { RouterOutlet } from '@angular/router';
 import { Habit } from './habit.model';
 import { MatTableModule } from '@angular/material/table';
 import { MatCardModule } from '@angular/material/card';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import {
+  FormsModule,
+  ReactiveFormsModule,
+  FormGroup,
+  FormControl,
+  Validators,
+} from '@angular/forms';
+import { MatRadioModule } from '@angular/material/radio';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MatTableModule, MatCardModule],
+  imports: [
+    RouterOutlet,
+    MatTableModule,
+    MatCardModule,
+    MatSlideToggleModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatRadioModule,
+  ],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
 export class App {
   protected title = 'Habit-Tracker';
+  displayedColumns: string[] = ['habitType', 'habitText'];
+  showPositiveHabits: boolean = false;
 
-  mockHabits: Array<Habit> = [
+  habitForm = new FormGroup({
+    name: new FormControl('', [Validators.required]),
+    description: new FormControl(''),
+    type: new FormControl('positive'),
+  });
+
+  habitsList: Array<Habit> = [
     {
       id: 0,
       name: 'Read a book',
       type: 'positive',
-      description: 'This is a description',
+      description: 'Mock... This is a description of a good habit',
       color: '#00ff00',
       history: [],
       streak: 0,
     },
     {
       id: 1,
-      name: "Don\'t eating junk food",
+      name: "Don't eating junk food",
       type: 'negative',
-      description: 'This is a description',
+      description: 'Mock... This is a description of a bad habit',
       color: '#9c1f00',
       history: [],
       streak: 0,
     },
   ];
-  dataSourcePositive: Array<Habit> = this.mockHabits.filter(
+  habitsListPositive: Array<Habit> = this.habitsList.filter(
     (habit) => habit.type === 'positive',
   );
-  dataSourceNegative: Array<Habit> = this.mockHabits.filter(
+  habitsListNegative: Array<Habit> = this.habitsList.filter(
     (habit) => habit.type === 'negative',
   );
-  displayedColumns: string[] = ['habitType', 'habitText'];
 
-  //for loop
+  toggleHabitType() {
+    this.showPositiveHabits = !this.showPositiveHabits;
+  }
+
+  onSubmit() {
+    if (this.habitForm.valid) {
+      const newHabit: Habit = {
+        id: this.habitsList.length,
+        name: this.habitForm.value.name!,
+        description: this.habitForm.value.description!,
+        type: this.habitForm.value.type!,
+        color: this.habitForm.value.type === 'positive' ? '#00ff00' : '#9c1f00',
+        history: [],
+        streak: 0,
+      };
+      this.habitsList.push(newHabit);
+      this.habitsListPositive = this.habitsList.filter(
+        (habit) => habit.type === 'positive',
+      );
+      this.habitsListNegative = this.habitsList.filter(
+        (habit) => habit.type === 'negative',
+      );
+      this.habitForm.reset({ name: '', description: '', type: 'positive' });
+    }
+  }
 }
