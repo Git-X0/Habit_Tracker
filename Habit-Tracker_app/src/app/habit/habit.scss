@@ -1,0 +1,30 @@
+@use '../../styles/variables' as *;
+@use '@angular/material' as mat;
+
+:host {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+mat-card {
+  @include card-shadow;
+
+  &.positive-habit {
+    border-left: 5px solid $positive-color;
+  }
+
+  &.negative-habit {
+    border-left: 5px solid $negative-color;
+  }
+}
+
+mat-card-header {
+  .mat-icon {
+    &.positive {
+      color: $positive-color;
+    }
+    &.negative {
+      color: $negative-color;
+    }
+  }
+}

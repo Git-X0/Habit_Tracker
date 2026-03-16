@@ -1,47 +1,26 @@
-.positive-habit {
-  background-color: #53b2ff; /* Light Blue */
+.container {
+  padding: 2rem;
 }
 
-.negative-habit {
-  background-color: #ff5f6f; /* Light Red */
+.main-title {
+  margin: 0;
 }
 
-.toggle-container {
-  display: flex;
-  justify-content: center;
-  margin: 20px 0;
-}
-.add-habit-button-container {
+.add-habit-fab {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
-}
-.form-container {
-  border: 1px solid #ccc;
-  padding: 20px;
-  margin: 20px auto;
-  max-width: 500px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-
-  h3 {
-    text-align: center;
-  }
-
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
+  bottom: 2rem;
+  right: 2rem;
 }
 
-mat-card {
-  margin: 10px 0;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-}
-
-.centered-toggle {
+.form-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.32);
   display: flex;
   justify-content: center;
+  align-items: center;
+  z-index: 1000;
 }

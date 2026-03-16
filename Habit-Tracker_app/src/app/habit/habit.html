@@ -1,0 +1,16 @@
+<mat-card [ngClass]="{
+  'positive-habit': habit.type === 'positive',
+  'negative-habit': habit.type === 'negative'
+}">
+  <mat-card-header>
+    <mat-icon mat-card-avatar [ngClass]="{
+      'positive': habit.type === 'positive',
+      'negative': habit.type === 'negative'
+    }">{{ habit.type === 'positive' ? 'thumb_up' : 'thumb_down' }}</mat-icon>
+    <mat-card-title>{{ habit.name }}</mat-card-title>
+    <mat-card-subtitle>Streak: {{ habit.streak }} days</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p>{{ habit.description }}</p>
+  </mat-card-content>
+</mat-card>

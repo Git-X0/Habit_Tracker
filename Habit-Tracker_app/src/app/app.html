@@ -1,51 +1,36 @@
-<mat-slide-toggle (change)="toggleHabitType()"
-  >Negative Habits <b>/</b> Positive Habits</mat-slide-toggle
+<mat-toolbar color="primary">
+  <h1 class="main-title">{{ title }}</h1>
+</mat-toolbar>
+
+<main class="container">
+  <mat-tab-group animationDuration="0ms" mat-stretch-tabs="false">
+    <mat-tab label="Good Habits">
+      <ng-template matTabContent>
+        <app-habits-tab type="positive"></app-habits-tab>
+      </ng-template>
+    </mat-tab>
+    <mat-tab label="Bad Habits">
+      <ng-template matTabContent>
+        <app-habits-tab type="negative"></app-habits-tab>
+      </ng-template>
+    </mat-tab>
+  </mat-tab-group>
+</main>
+
+@if (showAddHabitForm) {
+<div class="form-overlay">
+  <app-habit-form (formClosed)="toggleHabitForm(false)"></app-habit-form>
+</div>
+}
+
+<button
+  mat-fab
+  color="primary"
+  class="add-habit-fab"
+  aria-label="Add a new habit"
+  (click)="toggleHabitForm(true)"
 >
-
-<div class="form-container">
-  <h3>Add a new Habit</h3>
-  <form [formGroup]="habitForm" (ngSubmit)="onSubmit()">
-    <mat-form-field>
-      <mat-label>Habit Name</mat-label>
-      <input matInput formControlName="name" />
-    </mat-form-field>
-
-    <mat-form-field>
-      <mat-label>Description</mat-label>
-      <textarea matInput formControlName="description"></textarea>
-    </mat-form-field>
-
-    <div class="centered-toggle">
-      <mat-button-toggle-group formControlName="type">
-        <mat-button-toggle value="positive">Positive</mat-button-toggle>
-        <mat-button-toggle value="negative">Negative</mat-button-toggle>
-      </mat-button-toggle-group>
-    </div>
-
-    <button mat-raised-button color="primary" type="submit">Add Habit</button>
-  </form>
-</div>
-
-<div></div>
-<div>
-  @if (showPositiveHabits) { @for (habit of habitsListPositive; track $index) {
-  <mat-card>
-    <mat-card-header>
-      <h2>{{habit.name}}</h2>
-    </mat-card-header>
-    <mat-card-subtitle>Positive</mat-card-subtitle>
-    <mat-card-content> {{habit.description}}</mat-card-content>
-  </mat-card>
-  }} @else { @for (habit of habitsListNegative; track $index) {
-  <mat-card>
-    <mat-card-header>
-      <h2>{{habit.name}}</h2>
-    </mat-card-header>
-    <mat-card-subtitle>Negative</mat-card-subtitle>
-    <mat-card-content> {{habit.description}}</mat-card-content>
-  </mat-card>
-  } }
-</div>
+  <mat-icon>add</mat-icon>
+</button>
 
 <router-outlet />
-<!--  -->

@@ -1,8 +1,10 @@
+export type HabitType = 'positive' | 'negative';
+
 export interface Habit {
   id: number;
   name: string;
-  type: string;
+  type: HabitType;
   description: string;
-  history: Array<string>;
+  history: Array<Date>;
   streak: number;
 }

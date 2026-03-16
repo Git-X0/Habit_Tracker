@@ -1,96 +1,32 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Habit } from './habit.model';
-import { MatTableModule } from '@angular/material/table';
-import { MatCardModule } from '@angular/material/card';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
-import {
-  FormsModule,
-  ReactiveFormsModule,
-  FormGroup,
-  FormControl,
-  Validators,
-} from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
+import { HabitsTabComponent } from './habits-tab/habits-tab';
+import { HabitFormComponent } from './habit-form/habit-form';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
   imports: [
     RouterOutlet,
-    MatTableModule,
-    MatCardModule,
-    MatSlideToggleModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonToggleModule,
-    FormsModule,
-    ReactiveFormsModule,
+    MatTabsModule,
+    MatToolbarModule,
     MatButtonModule,
+    MatIconModule,
+    HabitsTabComponent,
+    HabitFormComponent,
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
-export class App {
-  protected title = 'Habit-Tracker';
-  displayedColumns: string[] = ['habitType', 'habitText'];
-  showPositiveHabits: boolean = false;
+export class AppComponent {
+  title = 'Habit Tracker';
+  showAddHabitForm = false;
 
-  habitForm = new FormGroup({
-    name: new FormControl('', [Validators.required]),
-    description: new FormControl(''),
-    type: new FormControl('positive'),
-  });
-
-  habitsList: Array<Habit> = [
-    {
-      id: 0,
-      name: 'Read a book',
-      type: 'positive',
-      description: 'Mock... This is a description of a good habit',
-      history: [],
-      streak: 0,
-    },
-    {
-      id: 1,
-      name: "Don't eating junk food",
-      type: 'negative',
-      description: 'Mock... This is a description of a bad habit',
-      history: [],
-      streak: 0,
-    },
-  ];
-  habitsListPositive: Array<Habit> = this.habitsList.filter(
-    (habit) => habit.type === 'positive',
-  );
-  habitsListNegative: Array<Habit> = this.habitsList.filter(
-    (habit) => habit.type === 'negative',
-  );
-
-  toggleHabitType() {
-    this.showPositiveHabits = !this.showPositiveHabits;
-  }
-
-  onSubmit() {
-    if (this.habitForm.valid) {
-      const newHabit: Habit = {
-        id: this.habitsList.length,
-        name: this.habitForm.value.name!,
-        description: this.habitForm.value.description!,
-        type: this.habitForm.value.type!,
-        history: [],
-        streak: 0,
-      };
-      this.habitsList.push(newHabit);
-      this.habitsListPositive = this.habitsList.filter(
-        (habit) => habit.type === 'positive',
-      );
-      this.habitsListNegative = this.habitsList.filter(
-        (habit) => habit.type === 'negative',
-      );
-      this.habitForm.reset({ name: '', description: '', type: 'positive' });
-    }
+  toggleHabitForm(show: boolean) {
+    this.showAddHabitForm = show;
   }
 }

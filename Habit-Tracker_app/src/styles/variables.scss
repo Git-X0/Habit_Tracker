@@ -1,0 +1,28 @@
+// Color Palette
+$primary-color: #673ab7; // Deep Purple
+$accent-color: #ffc107;  // Amber
+
+$positive-color: #4caf50; // Green
+$negative-color: #f44336; // Red
+
+// Typography
+$font-family: Roboto, "Helvetica Neue", sans-serif;
+
+// Mixins
+@mixin card-shadow {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: box-shadow 0.3s ease-in-out;
+
+  &:hover {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  }
+}
+
+@mixin responsive-breakpoint($point) {
+  @if $point == mobile {
+    @media (max-width: 768px) { @content; }
+  }
+  @else if $point == tablet {
+    @media (min-width: 769px) and (max-width: 1024px) { @content; }
+  }
+}
