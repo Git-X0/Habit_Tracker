@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Habit } from '../habit.model';
 import { HabitComponent } from '../habit/habit';
@@ -12,4 +12,9 @@ import { HabitComponent } from '../habit/habit';
 })
 export class HabitsListComponent {
   @Input() habits: Habit[] = [];
+  @Output() deleteHabit = new EventEmitter<string>();
+
+  onDeleteHabit(id: string) {
+    this.deleteHabit.emit(id);
+  }
 }

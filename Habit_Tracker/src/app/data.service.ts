@@ -12,26 +12,7 @@ export class DataService {
 
   constructor() {
     const storedHabits = localStorage.getItem(this.storageKey);
-    const initialHabits = storedHabits
-      ? JSON.parse(storedHabits)
-      : [
-          {
-            id: 0,
-            name: 'Read a book',
-            type: 'positive',
-            description: 'Mock... This is a description of a good habit',
-            history: [],
-            streak: 0,
-          },
-          {
-            id: 1,
-            name: "Don't eating junk food",
-            type: 'negative',
-            description: 'Mock... This is a description of a bad habit',
-            history: [],
-            streak: 0,
-          },
-        ];
+    const initialHabits = storedHabits ? JSON.parse(storedHabits) : [];
     this.habits$ = new BehaviorSubject<Habit[]>(initialHabits);
   }
 
@@ -45,24 +26,30 @@ export class DataService {
 
   getPositiveHabits(): Observable<Habit[]> {
     return this.habits$.pipe(
-      map((habits) => habits.filter((habit) => habit.type === 'positive'))
+      map((habits) => habits.filter((habit) => habit.type === 'positive')),
     );
   }
 
   getNegativeHabits(): Observable<Habit[]> {
     return this.habits$.pipe(
-      map((habits) => habits.filter((habit) => habit.type === 'negative'))
+      map((habits) => habits.filter((habit) => habit.type === 'negative')),
     );
   }
 
   addHabit(habit: Omit<Habit, 'id' | 'history' | 'streak'>) {
     const newHabit: Habit = {
-      id: this.habits$.value.length,
+      id: Math.random().toString(36).substring(2),
       ...habit,
       history: [],
       streak: 0,
     };
     this.habits$.next([...this.habits$.value, newHabit]);
+    this.updateStorage();
+  }
+
+  deleteHabit(id: string) {
+    const updatedHabits = this.habits$.value.filter((habit) => habit.id !== id);
+    this.habits$.next(updatedHabits);
     this.updateStorage();
   }
 }

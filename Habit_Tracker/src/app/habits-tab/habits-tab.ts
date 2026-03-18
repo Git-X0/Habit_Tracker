@@ -24,4 +24,8 @@ export class HabitsTabComponent implements OnInit {
         ? this.dataService.getPositiveHabits()
         : this.dataService.getNegativeHabits();
   }
+
+  onDeleteHabit(id: string) {
+    this.dataService.deleteHabit(id);
+  }
 }
