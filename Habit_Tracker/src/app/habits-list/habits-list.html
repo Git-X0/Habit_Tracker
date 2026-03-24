@@ -1,6 +1,10 @@
 @if (habits.length > 0) {
   @for (habit of habits; track habit.id) {
-    <app-habit [habit]="habit" (delete)="onDeleteHabit(habit.id)"></app-habit>
+    <app-habit
+      [habit]="habit"
+      (delete)="onDeleteHabit(habit.id)"
+      (update)="onUpdateHabit($event)"
+    ></app-habit>
   }
 } @else {
   <p class="empty-list-message">No habits to display. Add a new one!</p>

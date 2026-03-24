@@ -1,0 +1,81 @@
+@use "../../styles/variables" as *;
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.period-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  h4 {
+    margin: 0;
+    font-size: 1.2rem;
+  }
+  button {
+    background: none;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    &:hover:not(:disabled) {
+      background-color: #f0f0f0;
+    }
+  }
+}
+
+.mode-selector {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.mode-selector button {
+  border: none;
+  background: rgba(0, 0, 0, 0.05);
+  color: #666;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.mode-selector button:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.mode-selector button.active {
+  background: $positive-color;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+:host.negative .mode-selector button.active {
+  background: $negative-color;
+}
+
+.chart-container {
+  height: 280px;
+  width: 100%;
+}
+
+ngx-charts-bar-vertical .bar {
+  border-radius: 4px;
+}
+
+ngx-charts-bar-vertical text {
+  font-size: 11px;
+}

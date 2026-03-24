@@ -1,0 +1,96 @@
+@use '../../styles/variables' as *;
+
+:host {
+  width: 100%;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+
+  h3 {
+    margin: 0;
+    font-size: 1.2rem;
+  }
+
+  button {
+    background: none;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    line-height: 1;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+      background-color: #f0f0f0;
+    }
+  }
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 5px;
+  text-align: center;
+}
+
+.day-of-week {
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+
+.day-cell {
+  position: relative;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+
+  .day-number {
+    font-size: 0.9rem;
+  }
+
+  &.not-current-month {
+    .day-number {
+      color: #aaa;
+    }
+  }
+
+  &.completed {
+    &.positive {
+      background-color: rgba($positive-color, 0.2);
+      border: 1px solid $positive-color;
+    }
+    &.negative {
+      background-color: rgba($negative-color, 0.2);
+      border: 1px solid $negative-color;
+    }
+
+    // Duolingo-style checkmark
+    &::after {
+      content: '✔';
+      position: absolute;
+      bottom: 2px;
+      right: 2px;
+      font-size: 12px;
+      line-height: 1;
+      color: white;
+      text-shadow: 0 0 2px rgba(0,0,0,0.5);
+    }
+     &.positive::after {
+        color: $positive-color;
+    }
+     &.negative::after {
+        color: $negative-color;
+    }
+  }
+}

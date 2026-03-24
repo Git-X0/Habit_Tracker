@@ -19,6 +19,8 @@ mat-card {
 }
 
 mat-card-header {
+  cursor: pointer;
+
   .mat-icon {
     &.positive {
       color: $positive-color;
@@ -27,4 +29,18 @@ mat-card-header {
       color: $negative-color;
     }
   }
+
+  .done-button {
+    margin-left: auto; /* Pushes the buttons to the right */
+  }
+}
+
+.details-content {
+  padding: 1rem;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
 }

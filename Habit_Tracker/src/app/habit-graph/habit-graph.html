@@ -1,0 +1,50 @@
+<div class="period-header">
+  <button (click)="prevPeriod()" [disabled]="selectedMode === 'all'">‹</button>
+  <h4>{{ getPeriodTitle() }}</h4>
+  <button (click)="nextPeriod()" [disabled]="isCurrentPeriod()">›</button>
+</div>
+<div class="mode-selector">
+  <button
+    type="button"
+    [class.active]="selectedMode === 'week'"
+    (click)="changeSelected('week')"
+  >
+    Week
+  </button>
+  <button
+    type="button"
+    [class.active]="selectedMode === 'month'"
+    (click)="changeSelected('month')"
+  >
+    Month
+  </button>
+  <button
+    type="button"
+    [class.active]="selectedMode === 'year'"
+    (click)="changeSelected('year')"
+  >
+    Year
+  </button>
+  <button
+    type="button"
+    [class.active]="selectedMode === 'all'"
+    (click)="changeSelected('all')"
+  >
+    All
+  </button>
+</div>
+<div class="chart-container">
+  <ngx-charts-bar-vertical
+    [view]="view"
+    [scheme]="colorScheme"
+    [results]="data"
+    [gradient]="gradient"
+    [xAxis]="showXAxis"
+    [yAxis]="showYAxis"
+    [showXAxisLabel]="showXAxisLabel"
+    [showYAxisLabel]="showYAxisLabel"
+    [xAxisLabel]="xAxisLabel"
+    [yAxisLabel]="yAxisLabel"
+  >
+  </ngx-charts-bar-vertical>
+</div>

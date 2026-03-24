@@ -28,4 +28,8 @@ export class HabitsTabComponent implements OnInit {
   onDeleteHabit(id: string) {
     this.dataService.deleteHabit(id);
   }
+
+  onUpdateHabit(habit: Habit) {
+    this.dataService.updateHabit(habit);
+  }
 }

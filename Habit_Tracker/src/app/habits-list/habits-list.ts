@@ -13,8 +13,13 @@ import { HabitComponent } from '../habit/habit';
 export class HabitsListComponent {
   @Input() habits: Habit[] = [];
   @Output() deleteHabit = new EventEmitter<string>();
+  @Output() updateHabit = new EventEmitter<Habit>();
 
   onDeleteHabit(id: string) {
     this.deleteHabit.emit(id);
+  }
+
+  onUpdateHabit(habit: Habit) {
+    this.updateHabit.emit(habit);
   }
 }

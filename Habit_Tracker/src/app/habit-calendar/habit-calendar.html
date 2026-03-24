@@ -1,0 +1,24 @@
+<div class="calendar-header">
+  <button (click)="previousMonth()">‹</button>
+  <h3>
+    {{ monthNames[currentDate.getMonth()] }} {{ currentDate.getFullYear() }}
+  </h3>
+  <button (click)="nextMonth()">›</button>
+</div>
+<div class="calendar-grid">
+  <div *ngFor="let day of daysOfWeek" class="day-of-week">{{ day }}</div>
+  <ng-container *ngFor="let week of weeks">
+    <div
+      *ngFor="let day of week"
+      class="day-cell"
+      [ngClass]="{
+        'not-current-month': !day.isCurrentMonth,
+        'completed': day.isCurrentMonth && isDateInHistory(day.date),
+        'positive': habitType === 'positive',
+        'negative': habitType === 'negative'
+      }"
+    >
+      <span class="day-number">{{ day.day }}</span>
+    </div>
+  </ng-container>
+</div>
