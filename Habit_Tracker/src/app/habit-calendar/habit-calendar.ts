@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { HabitType } from '../habit.model';
 
 interface CalendarDay {
@@ -11,7 +10,7 @@ interface CalendarDay {
 @Component({
   selector: 'app-habit-calendar',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './habit-calendar.html',
   styleUrl: './habit-calendar.scss',
 })

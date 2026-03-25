@@ -4,6 +4,19 @@
   <button mat-button (click)="loadDemoHabits()" color="accent">
     💎 Load Demo Habits
   </button>
+  <button mat-button (click)="exportAllToCsv()" color="accent">
+    📤 Export CSV
+  </button>
+  <input
+    #csvInput
+    type="file"
+    accept=".csv"
+    style="display: none"
+    (change)="importFromCsv($event)"
+  />
+  <button mat-button (click)="triggerFileInput()" color="accent">
+    📥 Import CSV
+  </button>
 </mat-toolbar>
 
 <main class="container">

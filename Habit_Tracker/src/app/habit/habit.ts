@@ -1,6 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Habit } from '../habit.model';
-import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { HabitCalendar } from '../habit-calendar/habit-calendar';
@@ -11,7 +10,6 @@ import { MatButtonModule } from '@angular/material/button';
   selector: 'app-habit',
   standalone: true,
   imports: [
-    CommonModule,
     MatCardModule,
     MatIconModule,
     MatButtonModule,

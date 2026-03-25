@@ -5,7 +5,6 @@ import {
   OnChanges,
   SimpleChanges,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { NgxChartsModule, Color, ScaleType } from '@swimlane/ngx-charts';
 import { HabitType } from '../habit.model';
 
@@ -14,7 +13,7 @@ type GraphMode = 'week' | 'month' | 'year' | 'all';
 @Component({
   selector: 'app-habit-graph',
   standalone: true,
-  imports: [CommonModule, NgxChartsModule],
+  imports: [NgxChartsModule],
   templateUrl: './habit-graph.html',
   styleUrl: './habit-graph.scss',
 })

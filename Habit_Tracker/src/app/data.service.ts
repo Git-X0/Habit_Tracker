@@ -149,4 +149,13 @@ export class DataService {
     this.habits$.next(this.generateDemoHabits());
     this.updateStorage();
   }
+
+  getCurrentHabits(): Habit[] {
+    return this.habits$.value;
+  }
+
+  updateAllHabits(habits: Habit[]): void {
+    this.habits$.next(habits);
+    this.updateStorage();
+  }
 }

@@ -1,17 +1,13 @@
 <mat-card
-  [ngClass]="{
-  'positive-habit': habit.type === 'positive',
-  'negative-habit': habit.type === 'negative'
-}"
+  [class.positive-habit]="habit.type === 'positive'"
+  [class.negative-habit]="habit.type === 'negative'"
 >
   <div (click)="toggleHistory()">
     <mat-card-header>
       <mat-icon
         mat-card-avatar
-        [ngClass]="{
-        'positive': habit.type === 'positive',
-        'negative': habit.type === 'negative'
-      }"
+        [class.positive]="habit.type === 'positive'"
+        [class.negative]="habit.type === 'negative'"
         >{{ habit.type === 'positive' ? 'thumb_up' : 'thumb_down' }}</mat-icon
       >
       <mat-card-title>{{ habit.name }}</mat-card-title>
@@ -27,7 +23,8 @@
   <mat-card-content>
     <p>{{ habit.description }}</p>
   </mat-card-content>
-  <mat-card-content *ngIf="showHistory" class="details-content">
+  @if (showHistory) {
+  <mat-card-content class="details-content">
     <div class="details-grid">
       <div class="calendar-container">
         <app-habit-calendar
@@ -39,9 +36,10 @@
         <app-habit-graph
           [history]="habit.history"
           [habitType]="habit.type"
-          [ngClass]="habit.type"
+          [class]="habit.type"
         ></app-habit-graph>
       </div>
     </div>
   </mat-card-content>
+  }
 </mat-card>
