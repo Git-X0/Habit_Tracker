@@ -4,18 +4,12 @@
   <button mat-button (click)="loadDemoHabits()" color="accent">
     💎 Load Demo Habits
   </button>
-  <button mat-button (click)="exportAllToCsv()" color="accent">
-    📤 Export CSV
+
+  <button mat-button (click)="exportAllToJson()" color="accent">
+    📤 Export JSON
   </button>
-  <input
-    #csvInput
-    type="file"
-    accept=".csv"
-    style="display: none"
-    (change)="importFromCsv($event)"
-  />
-  <button mat-button (click)="triggerFileInput()" color="accent">
-    📥 Import CSV
+  <button mat-button (click)="showImportStepper = true" color="accent">
+    📥 Import JSON
   </button>
 </mat-toolbar>
 
@@ -37,6 +31,12 @@
 @if (showAddHabitForm) {
 <div class="form-overlay">
   <app-habit-form (formClosed)="toggleHabitForm(false)"></app-habit-form>
+</div>
+} @if (showImportStepper) {
+<div class="form-overlay">
+  <app-import-stepper
+    (stepperClosed)="toggleImportStepper(false)"
+  ></app-import-stepper>
 </div>
 }
 

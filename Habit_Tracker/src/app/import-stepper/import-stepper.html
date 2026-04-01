@@ -1,0 +1,39 @@
+<mat-horizontal-stepper #stepper linear>
+  <mat-step label="Nahraj JSON soubor">
+    <ng-template matStepLabel>Nahrát</ng-template>
+    <button mat-raised-button color="primary" (click)="fileInput.click()">
+      📁 Vybrat soubor JSON
+    </button>
+    <input
+      #fileInput
+      type="file"
+      accept=".json"
+      (change)="onFileSelected($event)"
+      style="display: none"
+    />
+    <div *ngIf="parsedHabits.length > 0">
+      <p>Načteno {{ parsedHabits.length }} návyku.</p>
+      <button mat-raised-button color="primary" (click)="stepper.next()">
+        Další
+      </button>
+    </div>
+  </mat-step>
+
+  <mat-step label="Volba akce">
+    <ng-template matStepLabel>Volba</ng-template>
+    <mat-radio-group [(ngModel)]="selectedOption" (change)="onOptionChange()">
+      <mat-radio-button value="merge"
+        >Merge (přidat nové {{ newHabitsCount }})</mat-radio-button
+      >
+      <mat-radio-button value="replace"
+        >Replace all (nahradit {{ parsedHabits.length }})</mat-radio-button
+      >
+    </mat-radio-group>
+    <div class="actions">
+      <button mat-button (click)="stepper.previous()">Zpět</button>
+      <button mat-raised-button color="primary" (click)="finishImport()">
+        Importovat
+      </button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>

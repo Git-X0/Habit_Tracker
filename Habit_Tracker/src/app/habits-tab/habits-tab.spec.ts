@@ -1,18 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HabitsTab } from './habits-tab';
+import { HabitsTabComponent } from './habits-tab';
 
-describe('HabitsTab', () => {
-  let component: HabitsTab;
-  let fixture: ComponentFixture<HabitsTab>;
+describe('HabitsTabComponent', () => {
+  let component: HabitsTabComponent;
+  let fixture: ComponentFixture<HabitsTabComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HabitsTab]
-    })
-    .compileComponents();
+      imports: [HabitsTabComponent],
+    }).compileComponents();
 
-    fixture = TestBed.createComponent(HabitsTab);
+    fixture = TestBed.createComponent(HabitsTabComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
