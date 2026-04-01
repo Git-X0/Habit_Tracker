@@ -4,6 +4,7 @@ import {
   ViewChild,
   Output,
   EventEmitter,
+  ElementRef,
 } from '@angular/core';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatRadioModule } from '@angular/material/radio';
