@@ -2,12 +2,22 @@
   padding: 2rem;
 }
 
+.left-spacer,
+.right-spacer {
+  flex: 1;
+}
+
+.nav-btn {
+  font-weight: 500;
+  margin: 0 8px;
+}
+
 .toolbar-button {
   margin-left: 8px;
 }
 
 .main-title {
-  margin: 0;
+  margin: 0 1rem 0 0;
 }
 
 .add-habit-fab {
