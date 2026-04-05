@@ -1,5 +1,5 @@
-@use '../../styles/variables' as *;
-@use '@angular/material' as mat;
+@use "../../styles/variables" as *;
+@use "@angular/material" as mat;
 
 :host {
   display: block;
@@ -37,10 +37,17 @@ mat-card-header {
 
 .details-content {
   padding: 1rem;
+  @include responsive-breakpoint(mobile) {
+    padding: 0.5rem;
+  }
 }
 
 .details-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
+  @include responsive-breakpoint(mobile) {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
 }

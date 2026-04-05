@@ -5,12 +5,14 @@
   <span class="left-spacer"></span>
   <h1 class="main-title">{{ title }}</h1>
   <span class="right-spacer"></span>
-  <button mat-button (click)="exportAllToJson()" color="accent">
-    📤 Export JSON
-  </button>
-  <button mat-button (click)="showImportStepper = true" color="accent">
-    📥 Import JSON
-  </button>
+  <span class="action-group">
+    <button mat-button (click)="exportAllToJson()" color="accent">
+      📤 Export Habits
+    </button>
+    <button mat-button (click)="showImportStepper = true" color="accent">
+      📥 Import Habits
+    </button>
+  </span>
 </mat-toolbar>
 
 <main class="container">

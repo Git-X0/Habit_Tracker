@@ -1,8 +1,8 @@
 <mat-horizontal-stepper #stepper linear>
-  <mat-step label="Nahraj JSON soubor">
-    <ng-template matStepLabel>Nahrát</ng-template>
+  <mat-step label="Upload JSON file">
+    <ng-template matStepLabel>Upload</ng-template>
     <button mat-raised-button color="primary" (click)="fileInput.click()">
-      📁 Vybrat soubor JSON
+      📁 Select JSON file
     </button>
     <input
       #fileInput
@@ -12,27 +12,29 @@
       style="display: none"
     />
     <div *ngIf="parsedHabits.length > 0">
-      <p>Načteno {{ parsedHabits.length }} návyku.</p>
+      <p>Loaded {{ parsedHabits.length }} habits.</p>
       <button mat-raised-button color="primary" (click)="stepper.next()">
-        Další
+        Next
       </button>
     </div>
   </mat-step>
 
-  <mat-step label="Volba akce">
-    <ng-template matStepLabel>Volba</ng-template>
+  <mat-step label="Action choice">
+    <ng-template matStepLabel>Choice</ng-template>
     <mat-radio-group [(ngModel)]="selectedOption" (change)="onOptionChange()">
-      <mat-radio-button value="merge"
-        >Merge (přidat nové {{ newHabitsCount }})</mat-radio-button
-      >
-      <mat-radio-button value="replace"
-        >Replace all (nahradit {{ parsedHabits.length }})</mat-radio-button
-      >
+      <mat-radio-button value="merge">
+        Merge (add new {{ newHabitsCount }})
+      </mat-radio-button>
+      <mat-radio-button value="replace">
+        Replace all ({{ parsedHabits.length }})
+      </mat-radio-button>
     </mat-radio-group>
+
     <div class="actions">
-      <button mat-button (click)="stepper.previous()">Zpět</button>
+      <button mat-button (click)="stepperClosed.emit()">Cancel</button>
+      <button mat-button (click)="stepper.previous()">Back</button>
       <button mat-raised-button color="primary" (click)="finishImport()">
-        Importovat
+        Import
       </button>
     </div>
   </mat-step>
