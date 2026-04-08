@@ -1,6 +1,5 @@
 import { Component, inject, ViewChild, ElementRef } from '@angular/core';
-import { take } from 'rxjs/operators';
-import { Habit, HabitType } from './habit.model';
+import { Habit } from './habit.model';
 import { RouterOutlet } from '@angular/router';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -14,7 +13,6 @@ import { ImportStepperComponent } from './import-stepper/import-stepper';
 @Component({
   selector: 'app-root',
   standalone: true,
-
   imports: [
     RouterOutlet,
     MatTabsModule,
@@ -25,7 +23,6 @@ import { ImportStepperComponent } from './import-stepper/import-stepper';
     HabitFormComponent,
     ImportStepperComponent,
   ],
-
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
@@ -44,10 +41,6 @@ export class AppComponent {
 
   toggleImportStepper(show: boolean) {
     this.showImportStepper = show;
-  }
-
-  loadDemoHabits() {
-    this.dataService.resetToDemo();
   }
 
   triggerFileInput() {
@@ -77,7 +70,9 @@ export class AppComponent {
     const reader = new FileReader();
     reader.onload = (e) => {
       try {
-        const jsonHabits = JSON.parse(e.target?.result as string);
+        const jsonHabits = JSON.parse(
+          (e.target as FileReader).result as string,
+        );
         if (!Array.isArray(jsonHabits)) {
           alert('Neplatný JSON - musí být pole návyku');
           return;
@@ -87,7 +82,7 @@ export class AppComponent {
         for (const rawHabit of jsonHabits) {
           const habit: Habit = {
             ...rawHabit,
-            history: rawHabit.history
+            history: (rawHabit.history || [])
               .map((dStr: string) => new Date(dStr))
               .filter((d: Date) => !isNaN(d.getTime())),
           };
