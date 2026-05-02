@@ -10,18 +10,20 @@
         [class.negative]="habit.type === 'negative'"
         >{{ habit.type === 'positive' ? 'thumb_up' : 'thumb_down' }}</mat-icon
       >
-      <mat-card-title>{{ habit.name }}</mat-card-title>
+      <mat-card-title class="wrap-text">{{ habit.name }}</mat-card-title>
       <button mat-icon-button (click)="markAsDone()" class="done-button">
         <mat-icon>check_circle</mat-icon>
       </button>
       <button mat-icon-button (click)="onDelete()" class="delete-button">
         <mat-icon>delete</mat-icon>
       </button>
-      <mat-card-subtitle>Streak: {{ habit.streak }} days</mat-card-subtitle>
+      <mat-card-subtitle class="wrap-text"
+        >Streak: {{ habit.streak }} days</mat-card-subtitle
+      >
     </mat-card-header>
   </div>
   <mat-card-content>
-    <p>{{ habit.description }}</p>
+    <p class="wrap-text">{{ habit.description }}</p>
   </mat-card-content>
   @if (showHistory) {
   <mat-card-content class="details-content">

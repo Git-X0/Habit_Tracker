@@ -11,6 +11,7 @@ import { HabitComponent } from '../habit/habit';
 })
 export class HabitsListComponent {
   @Input() habits: Habit[] = [];
+  @Input() type!: 'positive' | 'negative';
   @Output() deleteHabit = new EventEmitter<string>();
   @Output() updateHabit = new EventEmitter<Habit>();
 

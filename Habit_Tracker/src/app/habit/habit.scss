@@ -8,6 +8,7 @@
 
 mat-card {
   @include card-shadow;
+  overflow: hidden;
 
   &.positive-habit {
     border-left: 5px solid $positive-color;
@@ -21,6 +22,23 @@ mat-card {
 mat-card-header {
   cursor: pointer;
 
+  // Ensure text wraps properly in header elements
+  .mat-card-title {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    white-space: normal;
+    min-width: 0;
+  }
+
+  .mat-card-subtitle {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    white-space: normal;
+    min-width: 0;
+  }
+
   .mat-icon {
     &.positive {
       color: $positive-color;
@@ -33,6 +51,24 @@ mat-card-header {
   .done-button {
     margin-left: auto; /* Pushes the buttons to the right */
   }
+}
+
+mat-card-content {
+  // Ensure description text wraps properly
+  p {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    white-space: normal;
+  }
+}
+
+// Utility class for text wrapping
+.wrap-text {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  white-space: normal;
 }
 
 .details-content {

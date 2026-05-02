@@ -1,7 +1,8 @@
 @if (habits$ | async; as habits) {
-  <app-habits-list
-    [habits]="habits"
-    (deleteHabit)="onDeleteHabit($event)"
-    (updateHabit)="onUpdateHabit($event)"
-  ></app-habits-list>
+<app-habits-list
+  [habits]="habits"
+  [type]="type"
+  (deleteHabit)="onDeleteHabit($event)"
+  (updateHabit)="onUpdateHabit($event)"
+></app-habits-list>
 }

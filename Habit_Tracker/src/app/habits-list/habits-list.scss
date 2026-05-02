@@ -1,0 +1,31 @@
+.empty-list-message {
+  background-color: #f5f5f5;
+  border-radius: 16px;
+  padding: 20px 24px;
+  margin: 20px auto;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 12px 12px 0;
+    border-style: solid;
+    border-color: #f5f5f5 transparent transparent;
+  }
+
+  p {
+    margin: 0 0 8px 0;
+    font-size: 16px;
+    color: #333;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

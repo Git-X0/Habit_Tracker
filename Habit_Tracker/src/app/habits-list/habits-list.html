@@ -1,11 +1,15 @@
-@if (habits.length > 0) {
-  @for (habit of habits; track habit.id) {
-    <app-habit
-      [habit]="habit"
-      (delete)="onDeleteHabit(habit.id)"
-      (update)="onUpdateHabit($event)"
-    ></app-habit>
-  }
-} @else {
-  <p class="empty-list-message">No habits to display. Add a new one!</p>
+@if (habits.length > 0) { @for (habit of habits; track habit.id) {
+<app-habit
+  [habit]="habit"
+  (delete)="onDeleteHabit(habit.id)"
+  (update)="onUpdateHabit($event)"
+></app-habit>
+} } @else {
+<div class="empty-list-message">
+  <p>
+    Looks like you do not have any {{ type === 'positive' ? 'Good' : 'Bad' }}
+    habits logged yet.
+  </p>
+  <p>Try to log one now by clicking the + icon in the bottom right corner.</p>
+</div>
 }

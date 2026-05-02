@@ -30,9 +30,12 @@ import { HabitType } from '../habit.model';
 export class HabitFormComponent {
   @Output() formClosed = new EventEmitter<void>();
 
+  duplicateError = '';
+  validationError = '';
+
   habitForm = new FormGroup({
-    name: new FormControl('', [Validators.required]),
-    description: new FormControl(''),
+    name: new FormControl('', [Validators.required, Validators.maxLength(15)]),
+    description: new FormControl('', [Validators.maxLength(25)]),
     type: new FormControl<HabitType>('positive', {
       validators: [Validators.required],
       nonNullable: true,
@@ -41,13 +44,45 @@ export class HabitFormComponent {
 
   constructor(private dataService: DataService) {}
 
+  checkDuplicate(): boolean {
+    const { name, description, type } = this.habitForm.getRawValue();
+    const currentHabits = this.dataService.getCurrentHabits();
+
+    const normalizedName = name?.trim().toLowerCase() || '';
+    const normalizedDesc = description?.trim().toLowerCase() || '';
+
+    const duplicate = currentHabits.find((habit) => {
+      if (habit.type !== type) return false;
+      const existingName = habit.name.trim().toLowerCase();
+      const existingDesc = habit.description.trim().toLowerCase();
+      return existingName === normalizedName || existingDesc === normalizedDesc;
+    });
+
+    return !!duplicate;
+  }
+
   onSubmit() {
+    this.duplicateError = '';
+    this.validationError = '';
+
+    const { name, description } = this.habitForm.getRawValue();
+
+    if (!name?.trim() || !description?.trim()) {
+      this.validationError = 'Both name and description are required.';
+      return;
+    }
+
+    if (this.checkDuplicate()) {
+      this.duplicateError = 'You already created a habit like that.';
+      return;
+    }
+
     if (this.habitForm.valid) {
-      const { name, description, type } = this.habitForm.getRawValue();
+      const { type } = this.habitForm.getRawValue();
       this.dataService.addHabit({
-        name: name!,
-        description: description ?? '',
-        type: type,
+        name: name!.trim(),
+        description: description?.trim() || '',
+        type: type!,
       });
       this.habitForm.reset({ name: '', description: '', type: 'positive' });
       this.close();

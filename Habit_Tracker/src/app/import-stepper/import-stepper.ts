@@ -62,7 +62,7 @@ export class ImportStepperComponent {
         this.updateCount();
         this.stepper.next();
       } catch {
-        alert('Chybný JSON');
+        alert('Wrong JSON');
         this.stepper.reset();
       }
     };
