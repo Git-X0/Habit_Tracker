@@ -2,18 +2,18 @@
   <h3>Add a new Habit</h3>
   <form [formGroup]="habitForm" (ngSubmit)="onSubmit()">
     <mat-form-field>
-      <mat-label>Habit Name (max 15 chars)</mat-label>
+      <mat-label>Habit Name (max 20 chars)</mat-label>
       <input matInput formControlName="name" />
       @if (habitForm.get('name')?.hasError('maxlength')) {
-      <mat-error>Name cannot exceed 15 characters.</mat-error>
+      <mat-error>Name cannot exceed 20 characters.</mat-error>
       }
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Description (max 25 chars)</mat-label>
+      <mat-label>Description (max 30 chars)</mat-label>
       <textarea matInput formControlName="description"></textarea>
       @if (habitForm.get('description')?.hasError('maxlength')) {
-      <mat-error>Description cannot exceed 25 characters.</mat-error>
+      <mat-error>Description cannot exceed 30 characters.</mat-error>
       }
     </mat-form-field>
 

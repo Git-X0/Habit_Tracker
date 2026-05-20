@@ -34,8 +34,8 @@ export class HabitFormComponent {
   validationError = '';
 
   habitForm = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.maxLength(15)]),
-    description: new FormControl('', [Validators.maxLength(25)]),
+    name: new FormControl('', [Validators.required, Validators.maxLength(20)]),
+    description: new FormControl('', [Validators.maxLength(30)]),
     type: new FormControl<HabitType>('positive', {
       validators: [Validators.required],
       nonNullable: true,
