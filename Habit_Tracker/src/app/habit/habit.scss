@@ -51,6 +51,10 @@ mat-card-header {
   .done-button {
     margin-left: auto; /* Pushes the buttons to the right */
   }
+
+  .done-today {
+    color: $primary-color;
+  }
 }
 
 mat-card-content {
@@ -86,4 +90,17 @@ mat-card-content {
     grid-template-columns: 1fr;
     gap: 0.5rem;
   }
+}
+
+.calendar-container,
+.graph-container {
+  min-width: 0; // important for charts/svg sizing inside narrow columns
+}
+
+.calendar-container {
+  width: 100%;
+}
+
+.graph-container {
+  width: 100%;
 }

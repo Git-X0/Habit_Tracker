@@ -12,7 +12,7 @@
       >
       <mat-card-title class="wrap-text">{{ habit.name }}</mat-card-title>
       <button mat-icon-button (click)="markAsDone()" class="done-button">
-        <mat-icon>check_circle</mat-icon>
+        <mat-icon [class.done-today]="isDoneToday()">check_circle</mat-icon>
       </button>
       <button mat-icon-button (click)="onDelete()" class="delete-button">
         <mat-icon>delete</mat-icon>

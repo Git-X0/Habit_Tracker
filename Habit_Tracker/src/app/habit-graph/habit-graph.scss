@@ -70,6 +70,25 @@
 .chart-container {
   height: 280px;
   width: 100%;
+  min-width: 0;
+  max-width: 100%;
+
+  // Allow horizontal scroll on small screens (user can inspect chart details)
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+ngx-charts-bar-vertical {
+  width: max-content; // let the chart be wider than the viewport so it can scroll
+  display: block;
+  max-width: none;
+}
+
+@media (max-width: 425px) {
+  .chart-container {
+    height: 220px;
+  }
 }
 
 ngx-charts-bar-vertical .bar {

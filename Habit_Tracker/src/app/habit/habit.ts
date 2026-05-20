@@ -26,6 +26,15 @@ export class HabitComponent {
 
   showHistory = false;
 
+  isDoneToday(): boolean {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    return this.habit.history.some(
+      (d) => new Date(d).setHours(0, 0, 0, 0) === today.getTime(),
+    );
+  }
+
   onDelete() {
     this.delete.emit();
   }
